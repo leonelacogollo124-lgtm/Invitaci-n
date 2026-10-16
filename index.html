@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un pequeño bosque para Leo</title>
+
+    <style>
+        /* PALETA Y ESTILO GENERAL */
+        :root {
+            --bosque: #183d32;
+            --bosque-claro: #315d47;
+            --hoja: #76916b;
+            --crema: #f4eedc;
+            --papel: #fffaf0;
+            --dorado: #c7a86b;
+            --texto: #283b2f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bosque);
+            background-image:
+                radial-gradient(ellipse at 15% 15%, #46684c 0%, transparent 38%),
+                radial-gradient(ellipse at 85% 85%, #294f3c 0%, transparent 40%);
+            color: var(--texto);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        /* TARJETA CENTRAL */
+        .tarjeta {
+            width: 100%;
+            max-width: 560px;
+            min-height: 390px;
+            padding: 42px 28px;
+            text-align: center;
+            background-color: var(--papel);
+            border: 2px solid var(--dorado);
+            border-radius: 8px;
+            box-shadow: 0 12px 35px #0b211b80;
+            position: relative;
+        }
+
+        .detalle {
+            color: var(--hoja);
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hojas {
+            font-size: 28px;
+            margin: 10px 0 22px;
+        }
+
+        h1 {
+            color: var(--bosque);
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: normal;
+            line-height: 1.25;
+            margin: 0 0 18px;
+        }
+
+        h2 {
+            color: var(--bosque-claro);
+            font-size: 23px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .subtitulo {
+            color: #657565;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        /* BOTONES */
+        .botones {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+            min-height: 48px;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 17px;
+            padding: 12px 28px;
+            border: 1px solid var(--bosque);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .boton-si {
+            background-color: var(--bosque);
+            color: var(--papel);
+        }
+
+        .boton-no {
+            background-color: transparent;
+            color: var(--bosque);
+        }
+
+        button:focus-visible {
+            outline: 3px solid var(--dorado);
+            outline-offset: 4px;
+        }
+
+        /* MENSAJES Y RESEÑA */
+        #mensaje-perdon {
+            color: #9a5a46;
+            font-size: 19px;
+            font-style: italic;
+            min-height: 28px;
+        }
+
+        .separador {
+            width: 70px;
+            height: 1px;
+            background-color: var(--dorado);
+            margin: 24px auto;
+        }
+
+        .resena {
+            text-align: left;
+            background-color: var(--crema);
+            padding: 18px;
+            border-left: 3px solid var(--hoja);
+            font-size: 16px;
+        }
+
+        .datos-cita {
+            background-color: var(--bosque);
+            color: var(--papel);
+            padding: 18px;
+            margin-top: 24px;
+        }
+
+        .datos-cita p {
+            margin: 7px 0;
+        }
+
+        .pie {
+            color: var(--hoja);
+            font-size: 13px;
+            margin-top: 28px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 14px;
+            }
+
+            .tarjeta {
+                padding: 34px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="tarjeta">
+
+        <!-- PANTALLA 1 -->
+        <section id="pantalla-perdon">
+            <div class="detalle">Un pequeño bosque encantado</div>
+            <div class="hojas">🌿 🍃 🌿</div>
+
+            <h1>Leo, ¿me perdonas?</h1>
+
+            <p class="subtitulo">
+                Prometo que esta invitación tiene buenas intenciones...
+            </p>
+
+            <div class="botones">
+                <button class="boton-si" id="perdon-si">Sí ♥</button>
+                <button class="boton-no" id="perdon-no">No</button>
+            </div>
+
+            <p id="mensaje-perdon"></p>
+        </section>
+
+
+        <!-- PANTALLA 2 -->
+        <section id="pantalla-pelicula" hidden>
+            <div class="detalle">Una misión importante</div>
+            <div class="hojas">🌲 🦌 🌲</div>
+
+            <h1>¡Ok! ♥</h1>
+
+            <h2>¿Vemos La princesa Mononoke?</h2>
+
+            <p class="subtitulo">
+                Una pequeña aventura entre espíritus del bosque,
+                criaturas mágicas y humanos.
+            </p>
+
+            <div class="botones">
+                <button class="boton-si" id="pelicula-si">¡Sí! ♥</button>
+                <button class="boton-no" id="pelicula-no">No</button>
+            </div>
+        </section>
+
+
+        <!-- PANTALLA 3 -->
+        <section id="pantalla-cita" hidden>
+            <div class="detalle">Invitación oficial</div>
+            <div class="hojas">🌿 ✦ 🌿</div>
+
+            <h1>Tenemos una cita</h1>
+
+            <h2>La princesa Mononoke</h2>
+
+            <div class="separador"></div>
+
+            <div class="resena">
+                Ashitaka llega a un bosque donde los espíritus
+                de la naturaleza luchan por sobrevivir frente
+                a la expansión humana. Allí conoce a San,
+                una joven criada por lobos, y descubre una
+                historia sobre la naturaleza, el conflicto
+                y la posibilidad de encontrar el equilibrio.
+            </div>
+
+            <div class="datos-cita">
+                <p><strong>La cita es:</strong></p>
+                <p>📅 Sábado</p>
+                <p>🕗 8:00 p. m.</p>
+                <p>💻 Por Discord</p>
+            </div>
+
+            <p class="pie">
+                Prepara algo rico y nos vemos en el bosque. 🍃
+            </p>
+        </section>
+
+    </main>
+
+
+    <script>
+        // REFERENCIAS A LAS PANTALLAS
+        const pantallaPerdon = document.getElementById("pantalla-perdon");
+        const pantallaPelicula = document.getElementById("pantalla-pelicula");
+        const pantallaCita = document.getElementById("pantalla-cita");
+
+        // BOTONES DE LA PRIMERA PANTALLA
+        const perdonSi = document.getElementById("perdon-si");
+        const perdonNo = document.getElementById("perdon-no");
+        const mensajePerdon = document.getElementById("mensaje-perdon");
+
+        // MOSTRAR LA INVITACIÓN A LA PELÍCULA
+        perdonSi.addEventListener("click", function () {
+            pantallaPerdon.hidden = true;
+            pantallaPelicula.hidden = false;
+        });
+
+        // MOSTRAR "POR FIS"
+        perdonNo.addEventListener("click", function () {
+            mensajePerdon.textContent = "Por fis 🥺🌿";
+        });
+
+        // MOVER UN BOTÓN A UNA POSICIÓN ALEATORIA
+        function moverBoton(boton) {
+            boton.style.position = "fixed";
+
+            const maxX = Math.max(
+                0,
+                window.innerWidth - boton.offsetWidth - 10
+            );
+
+            const maxY = Math.max(
+                0,
+                window.innerHeight - boton.offsetHeight - 10
+            );
+
+            boton.style.left = (10 + Math.random() * maxX) + "px";
+            boton.style.top = (10 + Math.random() * maxY) + "px";
+        }
+
+        // EL NO DE PERDÓN ESCAPA DESPUÉS DE "POR FIS"
+        perdonNo.addEventListener("mouseenter", function () {
+            if (mensajePerdon.textContent !== "") {
+                moverBoton(perdonNo);
+            }
+        });
+
+        perdonNo.addEventListener("touchstart", function (evento) {
+            if (mensajePerdon.textContent !== "") {
+                evento.preventDefault();
+                moverBoton(perdonNo);
+            }
+        }, { passive: false });
+
+        // BOTONES DE LA PELÍCULA
+        const peliculaSi = document.getElementById("pelicula-si");
+        const peliculaNo = document.getElementById("pelicula-no");
+
+        // MOSTRAR LA CITA FINAL
+        peliculaSi.addEventListener("click", function () {
+            pantallaPelicula.hidden = true;
+            pantallaCita.hidden = false;
+        });
+
+        // EL NO DE LA PELÍCULA ESCAPA AL ACERCARSE
+        peliculaNo.addEventListener("mouseenter", function () {
+            moverBoton(peliculaNo);
+        });
+
+        peliculaNo.addEventListener("touchstart", function (evento) {
+            evento.preventDefault();
+            moverBoton(peliculaNo);
+        }, { passive: false });
+    </script>
+
+</body>
+</html>
+
+
+
